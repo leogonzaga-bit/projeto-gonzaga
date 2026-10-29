@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: portal-gestao-juridica
+    runtime: node
+    plan: 0.5c-512mb
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: portal-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PATH
+        value: /var/data/portal.sqlite
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: MASTER_NAME
+        value: Administrador Master
+      - key: MASTER_EMAIL
+        sync: false
+      - key: MASTER_PASSWORD
+        sync: false
+      - key: DRIVE_ROOT_FOLDER_ID
+        sync: false
+      - key: TZ
+        value: America/Sao_Paulo
